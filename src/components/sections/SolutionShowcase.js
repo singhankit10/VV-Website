@@ -8,6 +8,7 @@ import Image from 'next/image';
 export default function SolutionShowcase() {
   const sectionRef = useRef(null);
   const [activeFeature, setActiveFeature] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
   const intervalRef = useRef(null);
 
   const features = [
@@ -37,8 +38,35 @@ export default function SolutionShowcase() {
     },
   ];
 
-  // Auto-rotate features
+  // Detect when section becomes visible
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasStarted) {
+            setHasStarted(true);
+            setActiveFeature(0); // Start from first feature
+          }
+        });
+      },
+      { threshold: 0.3 } // Trigger when 30% of section is visible
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [hasStarted]);
+
+  // Auto-rotate features only after section is visible
+  useEffect(() => {
+    if (!hasStarted) return;
+
     const startInterval = () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -46,7 +74,7 @@ export default function SolutionShowcase() {
       
       intervalRef.current = setInterval(() => {
         setActiveFeature((prev) => (prev + 1) % features.length);
-      }, 6000); // Increased to 6 seconds
+      }, 6000);
     };
 
     startInterval();
@@ -56,7 +84,7 @@ export default function SolutionShowcase() {
         clearInterval(intervalRef.current);
       }
     };
-  }, [features.length]);
+  }, [hasStarted, features.length]);
 
   // Handle manual feature selection
   const handleFeatureClick = (index) => {
@@ -148,16 +176,33 @@ export default function SolutionShowcase() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8 z-10"
+                className="absolute bottom-0 left-0 right-0 p-8 z-10"
               >
                 <div className="max-w-2xl">
-                  <h4 className="text-3xl font-bold text-white mb-3">
+                  <h4 
+                    className="text-3xl font-bold text-white mb-3"
+                    style={{
+                      filter: 'drop-shadow(0 0 8px rgba(0,0,0,0.6)) drop-shadow(0 0 16px rgba(0,0,0,0.5)) drop-shadow(0 0 24px rgba(0,0,0,0.              4))',
+                      textShadow: '0 0 12px rgba(0,0,0,0.6), 0 0 24px rgba(0,0,0,0.5)'
+                    }}
+                  >
                     {features[activeFeature].title}
                   </h4>
-                  <p className="text-white/90 text-lg mb-3">
+                  <p 
+                    className="text-white text-lg mb-3"
+                    style={{
+                      filter: 'drop-shadow(0 0 8px rgba(0,0,0,0.6)) drop-shadow(0 0 16px rgba(0,0,0,0.5))',
+                      textShadow: '0 0 12px rgba(0,0,0,0.6), 0 0 20px rgba(0,0,0,0.5)'
+                    }}
+                  >
                     {features[activeFeature].description}
                   </p>
-                  <div className="inline-block px-4 py-2 bg-primary/20 backdrop-blur-sm rounded-full">
+                  <div 
+                    className="inline-block px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full border border-white/20"
+                    style={{
+                      filter: 'drop-shadow(0 0 8px rgba(0,0,0,0.5))'
+                    }}
+                  >
                     <span className="text-white font-semibold">
                       ⚡ {features[activeFeature].benefit}
                     </span>
@@ -197,7 +242,7 @@ export default function SolutionShowcase() {
                     className="absolute bottom-0 left-0 h-1 bg-primary"
                     initial={{ width: '0%' }}
                     animate={{ width: '100%' }}
-                    transition={{ duration: 6, ease: 'linear' }} // Increased to 6 seconds
+                    transition={{ duration: 6, ease: 'linear' }}
                   />
                 )}
               </button>

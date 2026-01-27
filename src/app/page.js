@@ -18,14 +18,24 @@ export default function HomePage() {
       <main className="bg-[#0a0a0a]">
         <Hero />
         <PartnerStrip />
-        <ProblemStory />
-        <SolutionShowcase />
-        <HowItWorks />        
-        <BeforeAfter />
+        <div id="features">
+          <ProblemStory />
+        </div>
+        <div id="solutions">
+          <SolutionShowcase />
+          <HowItWorks />
+        </div>
+        <div id="transformation">
+          <BeforeAfter />
+        </div>
         <SocialProof />
-        <TrustBanner />    
-        <MarketOpportunity />
-        <CTASection />
+        <TrustBanner />
+        <div id="market">
+          <MarketOpportunity />
+        </div>
+        <div id="demo">
+          <CTASection />
+        </div>
       </main>
       <Footer />
     </>
