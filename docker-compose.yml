@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  videovogue-app:
+    build: .
+    image: videovogue-website:1.0
+    container_name: videovogue-website
+    ports:
+      - "8020:3000"
+    restart: unless-stopped
+    env_file:
+      - .env.local
