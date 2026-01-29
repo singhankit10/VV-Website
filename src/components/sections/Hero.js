@@ -226,8 +226,11 @@ export default function Hero() {
             </div>
 
             {/* Main video container */}
-            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 p-1">
-              <div className="aspect-video bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl relative overflow-hidden group">
+            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 p-1 transition-transform duration-300 hover:scale-[1.02]">
+              <div 
+                onClick={handlePlayClick}
+                className="aspect-video bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl relative overflow-hidden group cursor-pointer"
+              >
                 
                 {/* Thumbnail Image */}
                 <div className="absolute inset-0">
@@ -312,7 +315,6 @@ export default function Hero() {
                 {/* Play button */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <button
-                    onClick={handlePlayClick}
                     className="w-16 h-16 rounded-full bg-gradient-to-r from-[#FF3B30] to-[#FF2D92] flex items-center justify-center shadow-xl shadow-primary/30 hover:shadow-primary/50 transition-shadow duration-300"
                   >
                     <svg className="w-6 h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">

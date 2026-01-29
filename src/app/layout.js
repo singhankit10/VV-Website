@@ -1,7 +1,7 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import SmoothScrollProvider from '@/components/animations/SmoothScrollProvider';
-import MagneticCursor from '@/components/ui/MagneticCursor';
+// import MagneticCursor from '@/components/ui/MagneticCursor';
 import FloatingCTA from '@/components/ui/FloatingCTA';
 import { SITE_CONFIG } from '@/lib/constants/site';
 
@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.variable}>
       <body className="antialiased">
-        <MagneticCursor />
+        {/* <MagneticCursor /> */}
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>

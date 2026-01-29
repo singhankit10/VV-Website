@@ -19,20 +19,20 @@ export default function SolutionShowcase() {
       imagePlaceholder: 'ai-tagging-demo.png',
     },
     {
-      title: 'Multi-Platform Commerce Integration',
-      description: 'Seamlessly connects with Shopify, WooCommerce, and major e-commerce platforms',
-      benefit: 'Integration with 50+ platforms',
-      imagePlaceholder: 'platform-integration-demo.png',
-    },
-    {
       title: 'Virtual Product Placement',
       description: 'Transform any scene into an interactive shopping moment with dynamic overlays',
       benefit: '30%+ boost in sales conversions',
       imagePlaceholder: 'product-placement-demo.png',
     },
     {
+      title: 'Multi-Platform Commerce Integration',
+      description: 'Seamlessly connects with Shopify, WooCommerce, and major e-commerce platforms',
+      benefit: 'Integration with 50+ platforms',
+      imagePlaceholder: 'platform-integration-demo.png',
+    },
+    {
       title: 'Inventory Management',
-      description: 'Turn your content library into shoppable inventory. Schedule campaigns, manage brand partnerships, track attribution.',
+      description: 'Turn your content library into shoppable inventory. Schedule campaigns, manage brand partnerships, track  attribution.',
       benefit: 'Complete campaign control',
       imagePlaceholder: 'inventory-management-demo.png',
     },
