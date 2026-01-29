@@ -1,14 +1,40 @@
 // src/components/layout/Footer.js
 'use client';
+import { useState } from 'react';
+import FeaturesModal from '@/components/footer/FeaturesModal';
+import SolutionsModal from '@/components/footer/SolutionsModal';
+import PricingModal from '@/components/footer/PricingModal';
+import ViewDemoModal from '@/components/footer/ViewDemoModal';
+import AboutModal from '@/components/footer/AboutModal';
+import CaseStudiesModal from '@/components/footer/CaseStudiesModal';
+import CareersModal from '@/components/footer/CareersModal';
+import ContactModal from '@/components/footer/ContactModal';
+import PrivacyPolicyModal from '@/components/footer/PrivacyPolicyModal';
+import TermsOfServiceModal from '@/components/footer/TermsOfServiceModal';
+import CookiePolicyModal from '@/components/footer/CookiePolicyModal';
+import DemoModal from '@/components/sections/DemoForm';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [isFeaturesModalOpen, setIsFeaturesModalOpen] = useState(false);
+  const [isSolutionsModalOpen, setIsSolutionsModalOpen] = useState(false);
+  const [isPricingModalOpen, setIsPricingModalOpen] = useState(false);
+  const [isDemoFooterModalOpen, setIsDemoFooterModalOpen] = useState(false);
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
+  const [isCaseStudiesModalOpen, setIsCaseStudiesModalOpen] = useState(false);
+  const [isCareersModalOpen, setIsCareersModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [isCookieModalOpen, setIsCookieModalOpen] = useState(false);
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
 
   return (
+    <>
     <footer className="relative bg-[#0a0a0a] border-t border-white/[0.08]">
       <div className="container-custom py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
-          {/* Brand Section - Larger */}
+          {/* Brand Section */}
           <div className="lg:col-span-5">
             <div className="mb-6">
               <h3 className="text-2xl font-black text-white mb-3">
@@ -108,24 +134,36 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               <li>
-                <a href="#features" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <button 
+                  onClick={() => setIsFeaturesModalOpen(true)}
+                  className="text-sm text-gray-400 hover:text-white transition-colors text-left"
+                >
                   Features
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#solutions" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <button 
+                  onClick={() => setIsSolutionsModalOpen(true)}
+                  className="text-sm text-gray-400 hover:text-white transition-colors text-left"
+                >
                   Solutions
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#pricing" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <button 
+                  onClick={() => setIsPricingModalOpen(true)}
+                  className="text-sm text-gray-400 hover:text-white transition-colors text-left"
+                >
                   Pricing
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#demo" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <button 
+                  onClick={() => setIsDemoFooterModalOpen(true)}
+                  className="text-sm text-gray-400 hover:text-white transition-colors text-left"
+                >
                   Demo
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -137,24 +175,36 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               <li>
-                <a href="#about" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <button 
+                  onClick={() => setIsAboutModalOpen(true)}
+                  className="text-sm text-gray-400 hover:text-white transition-colors text-left"
+                >
                   About
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#blog" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Blog
-                </a>
+                <button 
+                  onClick={() => setIsCaseStudiesModalOpen(true)}
+                  className="text-sm text-gray-400 hover:text-white transition-colors text-left"
+                >
+                  Case Studies
+                </button>
               </li>
               <li>
-                <a href="#careers" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <button 
+                  onClick={() => setIsCareersModalOpen(true)}
+                  className="text-sm text-gray-400 hover:text-white transition-colors text-left"
+                >
                   Careers
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#contact" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <button 
+                  onClick={() => setIsContactModalOpen(true)}
+                  className="text-sm text-gray-400 hover:text-white transition-colors text-left"
+                >
                   Contact
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -166,19 +216,28 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               <li>
-                <a href="#privacy" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <button 
+                  onClick={() => setIsPrivacyModalOpen(true)}
+                  className="text-sm text-gray-400 hover:text-white transition-colors text-left"
+                >
                   Privacy Policy
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#terms" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <button 
+                  onClick={() => setIsTermsModalOpen(true)}
+                  className="text-sm text-gray-400 hover:text-white transition-colors text-left"
+                >
                   Terms of Service
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#cookies" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <button 
+                  onClick={() => setIsCookieModalOpen(true)}
+                  className="text-sm text-gray-400 hover:text-white transition-colors text-left"
+                >
                   Cookie Policy
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -199,5 +258,58 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    {/* Modals */}
+      <FeaturesModal 
+        isOpen={isFeaturesModalOpen} 
+        onClose={() => setIsFeaturesModalOpen(false)} 
+      />
+      <SolutionsModal 
+        isOpen={isSolutionsModalOpen} 
+        onClose={() => setIsSolutionsModalOpen(false)} 
+      />
+      <PricingModal 
+        isOpen={isPricingModalOpen} 
+        onClose={() => setIsPricingModalOpen(false)}
+        onOpenDemo={() => setIsDemoModalOpen(true)}
+      />
+      <ViewDemoModal 
+        isOpen={isDemoFooterModalOpen} 
+        onClose={() => setIsDemoFooterModalOpen(false)}
+        onOpenDemoForm={() => setIsDemoModalOpen(true)}
+      />
+      <AboutModal 
+        isOpen={isAboutModalOpen} 
+        onClose={() => setIsAboutModalOpen(false)}
+      />
+      <CaseStudiesModal 
+        isOpen={isCaseStudiesModalOpen} 
+        onClose={() => setIsCaseStudiesModalOpen(false)}
+      />
+      <CareersModal 
+        isOpen={isCareersModalOpen} 
+        onClose={() => setIsCareersModalOpen(false)}
+      />
+      <ContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)}
+        onOpenDemoForm={() => setIsDemoModalOpen(true)}
+      />
+      <PrivacyPolicyModal 
+        isOpen={isPrivacyModalOpen} 
+        onClose={() => setIsPrivacyModalOpen(false)}
+      />
+      <TermsOfServiceModal 
+        isOpen={isTermsModalOpen} 
+        onClose={() => setIsTermsModalOpen(false)}
+      />
+      <CookiePolicyModal 
+        isOpen={isCookieModalOpen} 
+        onClose={() => setIsCookieModalOpen(false)}
+      />
+      <DemoModal 
+        isOpen={isDemoModalOpen} 
+        onClose={() => setIsDemoModalOpen(false)} 
+      />
+    </>
   );
 }
