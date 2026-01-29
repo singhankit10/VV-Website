@@ -12,28 +12,54 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: `${SITE_CONFIG.name} | ${SITE_CONFIG.tagline}`,
-  description: SITE_CONFIG.description,
-  keywords: ['video commerce', 'shoppable video', 'OTT platform', 'AR try-on', 'video monetization', 'entertainment commerce'],
-  authors: [{ name: SITE_CONFIG.name }],
+  title: 'VideoVogue - AI-Powered Video Commerce Platform',
+  description: 'Transform any video into a shoppable storefront with AI-driven tagging. Reduce manual effort by 80% and boost conversions by up to 3x. Live in 48-72 hours.',
+  keywords: 'video commerce, AI product tagging, shoppable video, OTT platform, streaming commerce, interactive video',
+  authors: [{ name: 'VideoVogue' }],
+  creator: 'VideoVogue',
+  publisher: 'VideoVogue',
+  metadataBase: new URL('https://videovogue.ai'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: `${SITE_CONFIG.name} | ${SITE_CONFIG.tagline}`,
-    description: SITE_CONFIG.description,
-    url: SITE_CONFIG.url,
-    siteName: SITE_CONFIG.name,
+    title: 'VideoVogue - AI-Powered Video Commerce Platform',
+    description: 'Transform any video into a shoppable storefront with AI-driven tagging. Reduce manual effort by 80% and boost conversions by up to 3x.',
+    url: 'https://videovogue.ai',
+    siteName: 'VideoVogue',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'VideoVogue Platform',
+      },
+    ],
     locale: 'en_US',
     type: 'website',
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
+  twitter: {
+    card: 'summary_large_image',
+    title: 'VideoVogue - AI-Powered Video Commerce Platform',
+    description: 'Transform any video into a shoppable storefront with AI-driven tagging. Reduce manual effort by 80% and boost conversions by up to 3x.',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
-};
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-icon.png',
+  },
+}
 
 export default function RootLayout({ children }) {
   return (
