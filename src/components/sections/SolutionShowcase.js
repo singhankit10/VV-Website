@@ -32,24 +32,23 @@ export default function SolutionShowcase() {
     },
     {
       title: 'Inventory Management',
-      description: 'Turn your content library into shoppable inventory. Schedule campaigns, manage brand partnerships, track  attribution.',
+      description: 'Turn your content library into shoppable inventory. Schedule campaigns, manage brand partnerships, track attribution.',
       benefit: 'Complete campaign control',
       imagePlaceholder: 'inventory-management-demo.png',
     },
   ];
 
-  // Detect when section becomes visible
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasStarted) {
             setHasStarted(true);
-            setActiveFeature(0); // Start from first feature
+            setActiveFeature(0);
           }
         });
       },
-      { threshold: 0.3 } // Trigger when 30% of section is visible
+      { threshold: 0.3 }
     );
 
     if (sectionRef.current) {
@@ -63,7 +62,6 @@ export default function SolutionShowcase() {
     };
   }, [hasStarted]);
 
-  // Auto-rotate features only after section is visible
   useEffect(() => {
     if (!hasStarted) return;
 
@@ -86,11 +84,9 @@ export default function SolutionShowcase() {
     };
   }, [hasStarted, features.length]);
 
-  // Handle manual feature selection
   const handleFeatureClick = (index) => {
     setActiveFeature(index);
     
-    // Clear and restart interval when user clicks
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
@@ -129,30 +125,30 @@ export default function SolutionShowcase() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-24 relative bg-gradient-to-b from-[#0a0a0a] via-[#0f0f0f] to-[#0a0a0a]">
+    <section ref={sectionRef} className="pt-12 md:pt-16 pb-6 md:pb-8 relative bg-gradient-to-b from-[#0a0a0a] via-[#0f0f0f] to-[#0a0a0a]">
       <div className="container-custom">
         {/* Title */}
-        <div className="solution-title mb-12 md:mb-16 text-center">
+        <div className="solution-title mb-8 md:mb-10 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-5 tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-3 tracking-tight">
               What Our Platform Does?
             </h2>
-            <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
+            <p className="text-sm md:text-base text-gray-400 max-w-2xl mx-auto">
               Four powerful features that transform passive viewing into active shopping
             </p>
           </motion.div>
         </div>
 
-        {/* Demo Container - REDUCED SIZE */}
+        {/* Demo Container */}
         <div className="demo-container max-w-5xl mx-auto">
-          {/* Large Image Demo Area */}
-          <div className="mb-12 bg-[#1a1a1a] rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-            <div className="aspect-video bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] relative">
+          {/* Image Demo Area - Reduced Height */}
+          <div className="mb-6 bg-[#1a1a1a] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+            <div className="relative h-[55vh] md:h-[60vh] bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f]">
               {/* Image Display */}
               <motion.div
                 key={activeFeature}
@@ -176,20 +172,20 @@ export default function SolutionShowcase() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="absolute bottom-0 left-0 right-0 p-8 z-10"
+                className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-10"
               >
                 <div className="max-w-2xl">
                   <h4 
-                    className="text-3xl font-bold text-white mb-3"
+                    className="text-2xl md:text-3xl font-bold text-white mb-2"
                     style={{
-                      filter: 'drop-shadow(0 0 8px rgba(0,0,0,0.6)) drop-shadow(0 0 16px rgba(0,0,0,0.5)) drop-shadow(0 0 24px rgba(0,0,0,0.              4))',
+                      filter: 'drop-shadow(0 0 8px rgba(0,0,0,0.6)) drop-shadow(0 0 16px rgba(0,0,0,0.5)) drop-shadow(0 0 24px rgba(0,0,0,0.4))',
                       textShadow: '0 0 12px rgba(0,0,0,0.6), 0 0 24px rgba(0,0,0,0.5)'
                     }}
                   >
                     {features[activeFeature].title}
                   </h4>
                   <p 
-                    className="text-white text-lg mb-3"
+                    className="text-white text-base md:text-lg mb-2"
                     style={{
                       filter: 'drop-shadow(0 0 8px rgba(0,0,0,0.6)) drop-shadow(0 0 16px rgba(0,0,0,0.5))',
                       textShadow: '0 0 12px rgba(0,0,0,0.6), 0 0 20px rgba(0,0,0,0.5)'
@@ -198,12 +194,12 @@ export default function SolutionShowcase() {
                     {features[activeFeature].description}
                   </p>
                   <div 
-                    className="inline-block px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full border border-white/20"
+                    className="inline-block px-3 py-1.5 bg-black/50 backdrop-blur-sm rounded-full border border-white/20"
                     style={{
                       filter: 'drop-shadow(0 0 8px rgba(0,0,0,0.5))'
                     }}
                   >
-                    <span className="text-white font-semibold">
+                    <span className="text-white text-sm font-semibold">
                       ⚡ {features[activeFeature].benefit}
                     </span>
                   </div>
@@ -212,31 +208,30 @@ export default function SolutionShowcase() {
             </div>
           </div>
 
-          {/* Feature Navigation */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Feature Navigation - Compact */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             {features.map((feature, index) => (
               <button
                 key={index}
                 onClick={() => handleFeatureClick(index)}
-                className={`group relative p-8 rounded-2xl text-left transition-all duration-500 ${
+                className={`group relative p-4 md:p-6 rounded-xl text-left transition-all duration-500 ${
                   activeFeature === index
                     ? 'bg-white text-black scale-105'
                     : 'bg-[#1a1a1a] text-white hover:bg-[#222222] border border-white/10'
                 }`}
               >
                 <div className="relative z-10">
-                  <div className="text-sm font-semibold uppercase tracking-wider mb-3 opacity-60">
+                  {/* <div className="text-xs font-semibold uppercase tracking-wider mb-2 opacity-60">
                     Feature {index + 1}
-                  </div>
-                  <h5 className="text-xl font-bold mb-2">
+                  </div> */}
+                  <h5 className="text-base md:text-lg font-bold mb-1">
                     {feature.title}
                   </h5>
-                  <p className={`text-sm ${activeFeature === index ? 'text-black/70' : 'text-gray-400'}`}>
+                  <p className={`text-xs md:text-sm ${activeFeature === index ? 'text-black/70' : 'text-gray-400'}`}>
                     {feature.benefit}
                   </p>
                 </div>
 
-                {/* Progress indicator */}
                 {activeFeature === index && (
                   <motion.div
                     className="absolute bottom-0 left-0 h-1 bg-primary"
@@ -256,10 +251,10 @@ export default function SolutionShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mt-12 md:mt-16 text-center"
+          className="mt-8 text-center"
         >
-          <div className="inline-block bg-[#1a1a1a] border border-white/10 rounded-2xl px-8 py-6 shadow-lg">
-            <p className="text-lg text-gray-400">
+          <div className="inline-block bg-[#1a1a1a] border border-white/10 rounded-2xl px-6 py-4 shadow-lg">
+            <p className="text-sm md:text-base text-gray-400">
               <span className="font-bold text-white">API-ready in 48-72 hours</span> • No coding expertise needed • Works with all major platforms
             </p>
           </div>

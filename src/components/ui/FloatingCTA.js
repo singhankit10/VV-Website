@@ -23,18 +23,21 @@ export default function FloatingCTA() {
     e.preventDefault();
     e.stopPropagation();
     
-    if (isScrolling) return; // Prevent multiple clicks
+    if (isScrolling) return;
     
     setIsScrolling(true);
     
     const section = document.getElementById('transformation');
     if (section) {
-      const yOffset = -80;
-      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const rect = section.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const targetY = rect.top + scrollTop - 100;
 
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      window.scrollTo({
+        top: targetY,
+        behavior: 'smooth'
+      });
 
-      // Re-enable after scroll
       setTimeout(() => setIsScrolling(false), 1000);
     } else {
       setIsScrolling(false);

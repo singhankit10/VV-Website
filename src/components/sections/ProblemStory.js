@@ -184,7 +184,7 @@ export default function ProblemStory() {
   ];
 
   return (
-    <section ref={sectionRef} className="problem-section relative py-16 md:py-24 bg-[#0a0a0a] overflow-hidden">
+    <section ref={sectionRef} className="problem-section relative pt-16 md:pt-24 pb-8 md:pb-2 bg-[#0a0a0a] overflow-hidden">
       {/* Minimal background */}
       <div className="absolute inset-0 opacity-[0.015]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(6,182,212,0.1),transparent_50%)]" />
@@ -258,10 +258,10 @@ export default function ProblemStory() {
           </motion.div> */}
 
           <div className="problem-headline mb-12">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight">
-              <span className="block text-white">Social media won.</span>
-              <span className="block bg-gradient-to-r from-pink-500 via-pink-400 to-purple-500 bg-clip-text text-transparent">
-                TV got left behind.
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-snug">
+              <span className="block text-white">Social media won</span>
+              <span className="block bg-gradient-to-r from-pink-500 via-pink-400 to-purple-500 bg-clip-text text-transparent pb-2">
+                TV got left behind
               </span>
             </h2>
           </div>

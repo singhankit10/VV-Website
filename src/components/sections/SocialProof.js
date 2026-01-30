@@ -114,21 +114,27 @@ export default function SuccessStories() {
   return (
     <section
       ref={sectionRef}
-      className="stories-section py-20 md:py-28 relative bg-[#0a0a0a] overflow-hidden"
+      className="stories-section pt-12 md:pt-16 pb-20 md:pb-28 relative bg-[#0a0a0a] overflow-hidden"
     >
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.06),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.02),transparent_70%)]" />
       </div>
 
       <div className="relative z-10">
         {/* Header */}
         <div className="stories-header text-center mb-16 container-custom">
-          <div className="inline-block mb-4">
-            <div className="text-xs uppercase tracking-[0.2em] text-cyan-400 font-semibold">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block px-6 py-3 bg-cyan-500/10 rounded-full mb-4 border border-cyan-500/20"
+          >
+            <span className="text-sm font-bold text-cyan-400 uppercase tracking-wider">
               Success Stories
-            </div>
-          </div>
+            </span>
+          </motion.div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-5 tracking-tight">
             Trusted by Industry Leaders
           </h2>

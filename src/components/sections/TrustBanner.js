@@ -67,17 +67,17 @@ export default function TrustBanner() {
       ref={sectionRef} 
       className="trust-section relative py-8 md:py-10 bg-[#0a0a0a] border-y border-white/[0.06] overflow-hidden"
     >
-      {/* Animated scanline effect */}
+      {/* Subtle pulse effect */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
-          className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/5 to-transparent"
           animate={{
-            top: ['0%', '100%'],
+            opacity: [0.3, 0.6, 0.3],
           }}
           transition={{
-            duration: 8,
+            duration: 4,
             repeat: Infinity,
-            ease: 'linear',
+            ease: 'easeInOut',
           }}
         />
       </div>

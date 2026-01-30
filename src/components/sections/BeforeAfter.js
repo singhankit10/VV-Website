@@ -60,7 +60,7 @@ export default function BeforeAfter() {
   }, [isDragging]);
 
   return (
-    <section id="transformation" ref={sectionRef} className="section-padding relative bg-[#0a0a0a]">
+    <section ref={sectionRef} className="pt-12 md:pt-16 pb-16 md:pb-20 relative bg-[#0a0a0a]">
       <div className="container-custom">
         {/* Title */}
         <div className="comparison-title mb-20 text-center">
