@@ -1,4 +1,3 @@
-// src/components/ui/FloatingCTA.js
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -8,39 +7,36 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function FloatingCTA() {
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
-    // Show button after a short delay
     const timer = setTimeout(() => setIsVisible(true), 1500);
     return () => clearTimeout(timer);
   }, []);
 
-  // Hide if on QR pages
   const shouldHide = pathname.startsWith('/qr/');
 
   const scrollToTransformation = (e) => {
     e.preventDefault();
     e.stopPropagation();
     
-    if (isScrolling) return;
-    
-    setIsScrolling(true);
-    
     const section = document.getElementById('transformation');
     if (section) {
-      const rect = section.getBoundingClientRect();
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const targetY = rect.top + scrollTop - 100;
-
-      window.scrollTo({
-        top: targetY,
-        behavior: 'smooth'
-      });
-
-      setTimeout(() => setIsScrolling(false), 1000);
-    } else {
-      setIsScrolling(false);
+      // Use Lenis scroll if available, otherwise fallback
+      if (window.lenis) {
+        window.lenis.scrollTo(section, {
+          offset: -100,
+          duration: 1.5,
+        });
+      } else {
+        const rect = section.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const targetY = rect.top + scrollTop - 100;
+        
+        window.scrollTo({
+          top: targetY,
+          behavior: 'smooth'
+        });
+      }
     }
   };
 
@@ -54,10 +50,8 @@ export default function FloatingCTA() {
           transition={{ type: 'spring', stiffness: 260, damping: 20 }}
           className="fixed bottom-8 right-8 z-50 group"
         >
-          {/* Pulsing ring effect */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FF3B30] to-[#FF2D92] opacity-75 blur-xl animate-pulse" />
           
-          {/* Outer glow ring */}
           <motion.div
             className="absolute inset-0 rounded-full border-2 border-[#FF3B30]"
             animate={{
@@ -71,12 +65,10 @@ export default function FloatingCTA() {
             }}
           />
 
-          {/* Main button - Desktop */}
           <button
-            onClick={(e) => scrollToTransformation(e)}
+            onClick={scrollToTransformation}
             className="hidden md:flex relative items-center gap-3 px-6 py-4 bg-gradient-to-r from-[#FF3B30] to-[#FF2D92] rounded-full shadow-2xl shadow-primary/50 hover:shadow-primary/70 transition-all duration-300 group-hover:scale-105"
           >
-            {/* Icon */}
             <motion.div
               animate={{ rotate: [0, 5, -5, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -86,7 +78,6 @@ export default function FloatingCTA() {
               </svg>
             </motion.div>
 
-            {/* Text */}
             <div className="text-left">
               <div className="text-white font-bold text-sm leading-tight whitespace-nowrap">
                 See Results
@@ -97,9 +88,8 @@ export default function FloatingCTA() {
             </div>
           </button>
 
-          {/* Mobile version - icon only */}
           <button
-            onClick={(e) => scrollToTransformation(e)}
+            onClick={scrollToTransformation}
             className="md:hidden relative w-16 h-16 bg-gradient-to-r from-[#FF3B30] to-[#FF2D92] rounded-full shadow-2xl shadow-primary/50 hover:shadow-primary/70 transition-all duration-300 group-hover:scale-105 flex items-center justify-center"
           >
             <motion.div
