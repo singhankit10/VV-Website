@@ -2,10 +2,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FloatingCTA() {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
     // Show button after a short delay
@@ -13,16 +16,34 @@ export default function FloatingCTA() {
     return () => clearTimeout(timer);
   }, []);
 
-  const scrollToTransformation = () => {
+  // Hide if on QR pages
+  const shouldHide = pathname.startsWith('/qr/');
+
+  const scrollToTransformation = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (isScrolling) return; // Prevent multiple clicks
+    
+    setIsScrolling(true);
+    
     const section = document.getElementById('transformation');
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const yOffset = -80;
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({ top: y, behavior: 'smooth' });
+
+      // Re-enable after scroll
+      setTimeout(() => setIsScrolling(false), 1000);
+    } else {
+      setIsScrolling(false);
     }
   };
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && !shouldHide && (
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -49,7 +70,7 @@ export default function FloatingCTA() {
 
           {/* Main button - Desktop */}
           <button
-            onClick={scrollToTransformation}
+            onClick={(e) => scrollToTransformation(e)}
             className="hidden md:flex relative items-center gap-3 px-6 py-4 bg-gradient-to-r from-[#FF3B30] to-[#FF2D92] rounded-full shadow-2xl shadow-primary/50 hover:shadow-primary/70 transition-all duration-300 group-hover:scale-105"
           >
             {/* Icon */}
@@ -75,7 +96,7 @@ export default function FloatingCTA() {
 
           {/* Mobile version - icon only */}
           <button
-            onClick={scrollToTransformation}
+            onClick={(e) => scrollToTransformation(e)}
             className="md:hidden relative w-16 h-16 bg-gradient-to-r from-[#FF3B30] to-[#FF2D92] rounded-full shadow-2xl shadow-primary/50 hover:shadow-primary/70 transition-all duration-300 group-hover:scale-105 flex items-center justify-center"
           >
             <motion.div

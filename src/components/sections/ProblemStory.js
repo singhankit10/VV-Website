@@ -197,10 +197,10 @@ export default function ProblemStory() {
           {/* Header */}
           <div className="text-center mb-10">
             <h3 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3">
-              We level the playing field.
+              We level the playing field
             </h3>
             <p className="text-base md:text-lg text-gray-400">
-              TV gets what social media has. Finally.
+              TV gets what social media has, finally
             </p>
           </div>
 
@@ -223,10 +223,10 @@ export default function ProblemStory() {
               whileHover={{ y: -5 }}
             >
               <div className="text-5xl md:text-6xl font-black bg-gradient-to-br from-primary to-pink-500 bg-clip-text text-transparent mb-3">
-                68%
+                79%
               </div>
               <div className="text-xs uppercase tracking-[0.2em] text-gray-500 font-semibold">
-                Skip Traditional Ads
+                Want In-Video Shopping
               </div>
             </motion.div>
 
@@ -235,10 +235,10 @@ export default function ProblemStory() {
               whileHover={{ y: -5 }}
             >
               <div className="text-5xl md:text-6xl font-black bg-gradient-to-br from-primary to-pink-500 bg-clip-text text-transparent mb-3">
-                78%
+                68%
               </div>
               <div className="text-xs uppercase tracking-[0.2em] text-gray-500 font-semibold">
-                Want In-Video Shopping
+                Skip Traditional Ads
               </div>
             </motion.div>
           </div>
@@ -246,7 +246,7 @@ export default function ProblemStory() {
 
         {/* Header - COMPACT */}
         <div className="text-center mb-12 md:mb-16">
-          <motion.div
+          {/* <motion.div
             className="problem-badge inline-block mb-6"
             whileHover={{ scale: 1.05 }}
           >
@@ -255,7 +255,7 @@ export default function ProblemStory() {
                 The $824B Problem
               </span>
             </div>
-          </motion.div>
+          </motion.div> */}
 
           <div className="problem-headline mb-12">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight">
